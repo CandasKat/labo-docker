@@ -17,47 +17,33 @@ import java.util.List;
 
 @Service
 public class NewsServices {
-    private List<DataModel> allStats = new ArrayList<>();
+    private List<DataModel> allNews = new ArrayList<>();
 
-    public List<DataModel> getAllStats() {
-        return allStats;
+    public List<DataModel> getAllNews() {
+        return allNews;
     }
     @PostConstruct
     @Scheduled(cron = "* * 1 * * *")
     public void newsData() throws IOException, InterruptedException {
         List<DataModel> newDatas = new ArrayList<>();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.thenewsapi.com/v1/news/top?api_token=wF6q09WqJvJaWVJx5iXdAoQ6BnabKZICvCdEXDhw"))
-                .header("limit", "5")
-                .header("language", "en")
-                .header("source", "e2news.com")
+
+                .uri(URI.create("https://api.thenewsapi.com/v1/news/top?api_token=wF6q09WqJvJaWVJx5iXdAoQ6BnabKZICvCdEXDhw&locale=ch&limit=5&language=fr"))
                 .method("GET", HttpRequest.BodyPublishers.noBody())
                 .build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         JsonNode jsonNode = new ObjectMapper().readTree(response.body());
-        System.out.println(jsonNode.get("data"));
-        System.out.println(jsonNode.get("data").get(1).get("title"));
-        System.out.println(jsonNode.get("data").get(1).get("description"));
-        System.out.println(jsonNode.get("data").get(1).get("snippet"));
-        System.out.println(jsonNode.get("data").get(0).get("title"));
-        System.out.println(jsonNode.get("data").get(0).get("description"));
-        System.out.println(jsonNode.get("data").get(0).get("snippet"));
-        System.out.println(jsonNode.get("data").get(2).get("title"));
-        System.out.println(jsonNode.get("data").get(2).get("description"));
-        System.out.println(jsonNode.get("data").get(2).get("snippet"));
-        System.out.println(jsonNode.get("data").get(3).get("title"));
-        System.out.println(jsonNode.get("data").get(3).get("description"));
-        System.out.println(jsonNode.get("data").get(3).get("snippet"));
-        System.out.println(jsonNode.get("data").get(4).get("title"));
-        System.out.println(jsonNode.get("data").get(4).get("description"));
-        System.out.println(jsonNode.get("data").get(4).get("snippet"));
-//        String url = String.valueOf(jsonNode.get("data").get(0).get("image_url"));
-//        String name = String.valueOf(jsonNode.get("location").get("name"));
-//        String current = String.valueOf(jsonNode.get("current").get("temp_c"));
-//        DataModel dataModel = new DataModel();
-//        dataModel.setName(name);
-//        dataModel.setData(current);
-//        newDatas.add(dataModel);
-//        this.allStats = newDatas;
+
+        for (int i = 0; i < 5; i++) {
+            DataModel news = new DataModel();
+
+            news.setName(String.valueOf(jsonNode.get("data").get(i).get("title")));
+            news.setData(String.valueOf(jsonNode.get("data").get(i).get("description")));
+            news.setDescription(String.valueOf(jsonNode.get("data").get(i).get("snippet")));
+            news.setImg(String.valueOf(jsonNode.get("data").get(i).get("image_url")));
+            news.setUrl(String.valueOf(jsonNode.get("data").get(i).get("url")));
+            newDatas.add(news);
+        }
+        this.allNews = newDatas;
     }
 }

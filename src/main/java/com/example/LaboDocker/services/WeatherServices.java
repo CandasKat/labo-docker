@@ -16,7 +16,7 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Service
+@Service
 public class WeatherServices {
 
     private List<DataModel> allStats = new ArrayList<>();
@@ -25,8 +25,8 @@ public class WeatherServices {
         return allStats;
     }
 
-//    @PostConstruct
-//    @Scheduled(cron = "* * 1 * * *")
+    @PostConstruct
+    @Scheduled(cron = "* * 1 * * *")
     public void weatherData() throws IOException, InterruptedException, ParseException {
         List<DataModel> newDatas = new ArrayList<>();
         HttpRequest request = HttpRequest.newBuilder()

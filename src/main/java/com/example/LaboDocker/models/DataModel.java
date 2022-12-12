@@ -7,11 +7,28 @@ public class DataModel {
 
     private String name;
     private String data;
-
     private String description;
+    private String img;
+    private String url;
+
+    public String getUrl() {
+        return url.replaceAll("\"", "");
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getImg() {
+        return img.replaceAll("\"", "");
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public String getDescription() {
-        return description;
+        return description.translateEscapes();
     }
 
     public void setDescription(String description) {
@@ -19,7 +36,7 @@ public class DataModel {
     }
 
     public String getName() {
-        return name;
+        return name.translateEscapes();
     }
 
     public void setName(String name) {
@@ -27,7 +44,7 @@ public class DataModel {
     }
 
     public String getData() {
-        return data;
+        return data.translateEscapes();
     }
 
     public void setData(String data) {
