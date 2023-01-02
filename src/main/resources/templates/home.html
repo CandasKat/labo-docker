@@ -8,55 +8,87 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
+
 </head>
 
 <body>
+    <div class="container">
 
-<div class="container">
-    <div class="d-flex card text-bg-primary mb-4">
-        <h1 class="text-center"><b>LABO DOCKER</b></h1>
-    </div>
-</div>
-
-<div class="container">
-    <div class="d-flex card text-bg-light mb-4">
-        <h2 class="text-center">BREAKING NEWS</h2>
-    </div>
-</div>
-
-<div class="container">
-    <div class="card-group mb-3">
-        <div class="card text-bg-secondary" th:each="getNews : ${getNews}">
-            <img class="card-img-top" th:src="${{getNews.getImg}}">
-            <div class="card-body">
-                <h5 class="card-title fs-4 fw-bold" th:text="${getNews.getName}"></h5>
-                <p class="card-text fs-5" th:text="${getNews.getData}"></p>
-                <p class="card-text" th:text="${getNews.getDescription}"></p>
+        <div class="container">
+            <div class="d-flex card text-bg-primary mb-4">
+                <h1 class="text-center"><b>LABO DOCKER</b></h1>
             </div>
-            <div class="card-footer bg-transparent border-success"><a class="text-dark" th:href="${{getNews.getUrl}}">Read more...</a></div>
         </div>
-    </div>
-</div>
 
-
-<div class="container">
-    <div class="card mb-3" style="max-width: 180px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="https://cdn4.iconfinder.com/data/icons/the-weather-is-nice-today/64/weather_21-256.png" class="img-fluid rounded-start">
+        <div class="container">
+            <div class="d-flex card text-bg-light mb-4">
+                <h2 class="text-center">BREAKING NEWS</h2>
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Weather</h5>
-                    <p class="card-text" th:text="${location}"></p>
-                    <p class="card-text" th:text="${temp}"></p>
+        </div>
+
+        <div class="container">
+            <div class="card-group mb-3">
+                <div class="card text-bg-secondary" th:each="getNews : ${getNews}">
+                    <img class="card-img-top" th:src="${{getNews.getImg}}">
+                    <div class="card-body">
+                        <h5 class="card-title fs-4 fw-bold" th:text="${getNews.getName}"></h5>
+                        <p class="card-text fs-5" th:text="${getNews.getData}"></p>
+                        <p class="card-text" th:text="${getNews.getDescription}"></p>
+                    </div>
+                    <div class="card-footer bg-transparent border-success"><a class="text-dark" th:href="${{getNews.getUrl}}">Read more...</a></div>
                 </div>
             </div>
         </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2 mb-3 mb-sm-0">
+                    <div class="card text-bg-info"></div>
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://cdn4.iconfinder.com/data/icons/the-weather-is-nice-today/64/weather_21-256.png" class="img-fluid rounded-start">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Weather</h5>
+                                    <p class="card-text" th:text="${location}"></p>
+                                    <p class="card-text" th:text="${temp}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="card text-bg-light"></div>
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="https://media.giphy.com/media/KGSxFwJJHQPsKzzFba/giphy.gif" class="img-fluid rounded-start">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Joke</h5>
+                                    <p class="card-text" th:text="${getJokeDescription}"></p>
+                                    <p class="card-text" th:text="${getJokeData}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-sm-6">
+                    <div class="card border-warning mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Activity</h5>
+                            <p class="card-text" th:text="${getActivityDescription}"></p>
+                            <p class="card-text" th:text="${getActivityData}"></p>
+                        </div>
+                     </div>
+                 </div>
+
+        </div>
+
     </div>
-</div>
-
-
 </body>
 
 </html>

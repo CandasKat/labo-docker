@@ -17,13 +17,13 @@ import java.util.List;
 
 @Service
 public class RandomJokeServices {
-    private List<DataModel> allStats = new ArrayList<>();
+    private List<DataModel> jokes = new ArrayList<>();
 
-    public List<DataModel> getAllStats() {
-        return allStats;
+    public List<DataModel> getJokes() {
+        return jokes;
     }
-//    @PostConstruct
-//    @Scheduled(cron = "* * 1 * * *")
+    @PostConstruct
+    @Scheduled(cron = "* * 1 * * *")
     public void randomJoke() throws IOException, InterruptedException {
         List<DataModel> newDatas = new ArrayList<>();
         HttpRequest request = HttpRequest.newBuilder()
@@ -34,12 +34,10 @@ public class RandomJokeServices {
                 .build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         JsonNode jsonNode = new ObjectMapper().readTree(response.body());
-//        String name = String.valueOf(jsonNode.get("location").get("name"));
-//        String current = String.valueOf(jsonNode.get("current").get("temp_c"));
-//        DataModel dataModel = new DataModel();
-//        dataModel.setName(name);
-//        dataModel.setData(current);
-//        newDatas.add(dataModel);
-//        this.allStats = newDatas;
+        DataModel joke = new DataModel();
+        joke.setDescription(String.valueOf(jsonNode.get("body").get(0).get("setup")));
+        joke.setData(String.valueOf(jsonNode.get("body").get(0).get("punchline")));
+        newDatas.add(joke);
+        this.jokes = newDatas;
     }
 }
