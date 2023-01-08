@@ -34,7 +34,6 @@ public class RandomActivityServices {
                 .build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         JsonNode jsonNode = new ObjectMapper().readTree(response.body());
-        System.out.println(jsonNode);
         DataModel dataModel = new DataModel();
         dataModel.setData(String.valueOf(jsonNode.get("activity")));
         dataModel.setDescription(String.valueOf(jsonNode.get("type")));
