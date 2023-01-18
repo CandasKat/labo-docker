@@ -28,7 +28,7 @@ public class NewsServices {
         List<DataModel> newDatas = new ArrayList<>();
         HttpRequest request = HttpRequest.newBuilder()
 
-                .uri(URI.create("https://api.thenewsapi.com/v1/news/top?api_token=wF6q09WqJvJaWVJx5iXdAoQ6BnabKZICvCdEXDhw&locale=ch&limit=5&language=fr"))
+                .uri(URI.create("https://api.thenewsapi.com/v1/news/top?api_token=YOUR_API_KEY&locale=ch&limit=5&language=fr"))
                 .method("GET", HttpRequest.BodyPublishers.noBody())
                 .build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
