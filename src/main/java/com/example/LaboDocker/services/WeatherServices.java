@@ -31,7 +31,7 @@ public class WeatherServices {
         List<DataModel> newDatas = new ArrayList<>();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://weatherapi-com.p.rapidapi.com/current.json?q=Lausanne"))
-                .header("X-RapidAPI-Key", "0b6df8825fmshf3d59c26eacae31p1c8113jsn3da9280aca87")
+                .header("X-RapidAPI-Key", "YOUR_API_KEY")
                 .header("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com")
                 .method("GET", HttpRequest.BodyPublishers.noBody())
                 .build();
