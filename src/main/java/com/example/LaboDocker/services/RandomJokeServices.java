@@ -28,7 +28,7 @@ public class RandomJokeServices {
         List<DataModel> newDatas = new ArrayList<>();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://dad-jokes.p.rapidapi.com/random/joke"))
-                .header("X-RapidAPI-Key", "0b6df8825fmshf3d59c26eacae31p1c8113jsn3da9280aca87")
+                .header("X-RapidAPI-Key", "YOUR_API_KEY")
                 .header("X-RapidAPI-Host", "dad-jokes.p.rapidapi.com")
                 .method("GET", HttpRequest.BodyPublishers.noBody())
                 .build();
